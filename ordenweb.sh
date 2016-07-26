@@ -39,6 +39,7 @@ fecha_t=$day_t-$month_t-$year_t
 # CONTROL
 fal_mes=true;
 fal_dia=true;
+dir_ord=false;
 
 ## LOGICA
 ## CREANDO DIRECTORIO DE TRABAJO
@@ -72,15 +73,21 @@ else
 	echo  $str_dircre \'"PARA ${dia^^} $fecha"\'
 fi
 # MOVIENDO DIRECTORIO DIA DE TRABAJO
-if [[ -d "$base_dir""PARA ${dia_t^^} $fecha_t" ]]; then
-	if [[ -d "$base_dir""$year_x"/"${month_x^^}"/"PARA ${dia_t^^} $fecha_t" ]]; then
-		echo 'error duplicado'
+if [[ -d "$base_dir""PARA ${dia_t^^} $fecha_t" ]]; then #si el dir esta en la raiz
+	if [[ -d "$base_dir""$year_x"/"${month_x^^}"/"PARA ${dia_t^^} $fecha_t" ]]; then #si el dir esta en su lugar
+		echo 'directorio '"$base_dir""PARA ${dia_t^^} $fecha_t"' duplicado' #existe una duplicidad de dir
 	else
-		mv "$base_dir""PARA ${dia_t^^} $fecha_t" ./"$year_x"/"${month_x^^}"/
+		mv "$base_dir""PARA ${dia_t^^} $fecha_t" ./"$year_x"/"${month_x^^}"/ #si no existe se mueve para ordenar
 		echo $str_mesorg \'"$year_x"\/"${month_x^^}"\/"PARA ${dia_t^^} $fecha_t"\'
 	fi
+	$dir_ord=true;
+	echo 'el directorio' "$base_dir""PARA ${dia_t^^} $fecha_t" 'ya esta ordenado'
 else
-	echo 'falta directorio'
+	if [[ -d "$base_dir""$year_x"/"${month_x^^}"/"PARA ${dia_t^^} $fecha_t" ]]; then #Si no esta en la raiz se revisa si existe en el orden
+		echo 'el directorio' "$base_dir""PARA ${dia_t^^} $fecha_t" ' ya esta ordenado' #Si esta pues ya esta ordenado no hay problema
+	else
+		echo 'el directorio' "$base_dir""PARA ${dia_t^^} $fecha_t" ' ha sido borrado o nunca se creó' # se debe auditar para ver quien borro el directorio o que sucedió
+	fi
 fi
 
 exit
