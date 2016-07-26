@@ -108,8 +108,7 @@ echo ' BORRANDO ARCHIVOS QUE ESTEN EN LA RAIZ DE LOS DIRECTORIOS '
 find $base_dir -maxdepth 3 -iname \*.\* -not \( -iname \*.sh -or -iname \.\* -or -iname \*.sample \) -not -path "./PARA*/*" -exec rm vf {} \;
 echo ' BORRANDO ARCHIVOS DEL DIRECTORIO DE TRABAJO ACTUAL'
 
-fin
-
-
+find $base_dir -path "./PARA*" -iname \*.\* -not \( -name "PAG-*.pdf" \)  -exec rm -vf {} \;
+echo ' BORRANDO ARCHIVOS BASURA DEL DIRECTORIO DE TRABAJO '
 
 exit
