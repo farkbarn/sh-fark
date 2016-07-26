@@ -21,25 +21,25 @@ tip_docval='*.pdf'	#Tipo de documento valido, se especifica que documento es ace
 base_dir='./'		#se toma como base de directorio el ./ para ejecutar el script a partir de ese directorio
 
 # YEAR
-year_x=$(date -d "tomorrow" +'%Y')
+year_x=$(date -d "tomorrow" +'%Y') #año en 4 digitos
 # AÑO
-month_x=$(date -d "tomorrow" +'%B')
-# MAÑANA
+month_x=$(date -d "tomorrow" +'%B') # mes en texto
+# MAÑANA - DIA DE TRABAJO A REALIZAR
 year=$(date -d "tomorrow" +'%y')
 month=$(date -d "tomorrow" +'%m')
 day=$(date -d "tomorrow" +'%d')
 dia=$(date -d "tomorrow" +'%A')
 fecha=$day-$month-$year
-# HOY
+# HOY - DIA DE TRABAJO REALIZADO
 year_t=$(date -d "today" +'%y')
 month_t=$(date -d "today" +'%m')
 day_t=$(date -d "today" +'%d')
 dia_t=$(date -d "today" +'%A')
 fecha_t=$day_t-$month_t-$year_t
 # CONTROL
-fal_mes=true;
-fal_dia=true;
-dir_ord=false;
+fal_mes=true;	# FALTA MES
+fal_dia=true;	# FALTA DIA
+dir_ord=false;	# FALTA ORDENAR
 
 ## LOGICA
 ## CREANDO DIRECTORIO DE TRABAJO
