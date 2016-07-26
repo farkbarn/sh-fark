@@ -10,15 +10,19 @@
 #             en este caso los pdf's generados en proceso de producción de el diario "El Informador, C.A."
 
 ## VALORES
+str_msg_borcre=' ha sido borrado o nunca se creó'
 str_dircre='Creando el directorio '
 str_dirmv='Directorio movido '
+str_dir='Directorio '
+str_dup=' Duplicado '
 str_direxi='El directorio ya existe, se omite la creación de '
 str_dirsav='Guardando directorio anterior'
 str_mesexi='Ya esta organizado el mes de '
-str_mesorg='Esta organizado el directorio '
+str_mesorg=' Esta organizado '
 tip_docval='*.pdf'	#Tipo de documento valido, se especifica que documento es aceptado para almacenar
 					#todo tocumento que no sea de esta extensión será borrado de forma automática
-base_dir='./'		#se toma como base de directorio el ./ para ejecutar el script a partir de ese directorio
+tip_docdel='*.png, *.psd, *.jpg, *.jpeg, *.svg, *.doc*, *.indd, *.txt, *.exe'
+base_dir='./'		#se toma como base el directorio ./ para ejecutar el script a partir de este directorio
 
 # YEAR
 year_x=$(date -d "tomorrow" +'%Y') #año en 4 digitos
@@ -75,19 +79,28 @@ fi
 # MOVIENDO DIRECTORIO DIA DE TRABAJO
 if [[ -d "$base_dir""PARA ${dia_t^^} $fecha_t" ]]; then #si el dir esta en la raiz
 	if [[ -d "$base_dir""$year_x"/"${month_x^^}"/"PARA ${dia_t^^} $fecha_t" ]]; then #si el dir esta en su lugar
-		echo 'directorio '"$base_dir""PARA ${dia_t^^} $fecha_t"' duplicado' #existe una duplicidad de dir
+		echo $str_dir "$base_dir""PARA ${dia_t^^} $fecha_t" $str_dup #existe una duplicidad de dir
 	else
-		mv "$base_dir""PARA ${dia_t^^} $fecha_t" ./"$year_x"/"${month_x^^}"/ #si no existe se mueve para ordenar
+		mv "$base_dir""PARA ${dia_t^^} $fecha_t" "$base_dir""$year_x"/"${month_x^^}"/ #si no existe se mueve para ordenar
 		echo $str_mesorg \'"$year_x"\/"${month_x^^}"\/"PARA ${dia_t^^} $fecha_t"\'
 	fi
-	$dir_ord=true;
-	echo 'el directorio' "$base_dir""PARA ${dia_t^^} $fecha_t" 'ya esta ordenado'
+	dir_ord=true;
+	echo $str_dir \'"PARA ${dia_t^^} $fecha_t"\' $str_mesorg 'en ' "$base_dir""$year_x"/"${month_x^^}"/
 else
 	if [[ -d "$base_dir""$year_x"/"${month_x^^}"/"PARA ${dia_t^^} $fecha_t" ]]; then #Si no esta en la raiz se revisa si existe en el orden
-		echo 'el directorio' "$base_dir""PARA ${dia_t^^} $fecha_t" ' ya esta ordenado' #Si esta pues ya esta ordenado no hay problema
+		echo $str_dir \'"PARA ${dia_t^^} $fecha_t"\' $str_mesorg 'en ' "$base_dir""$year_x"/"${month_x^^}"/ #Si esta pues ya esta ordenado no hay problema
 	else
-		echo 'el directorio' "$base_dir""PARA ${dia_t^^} $fecha_t" ' ha sido borrado o nunca se creó' # se debe auditar para ver quien borro el directorio o que sucedió
+		echo $str_dir "$base_dir""PARA ${dia_t^^} $fecha_t" $str_msg_borcre # se debe auditar para ver quien borró el directorio o que sucedió
 	fi
 fi
+
+# BORRANDO ARCHIVOS QUE NO SON PDF
+# ELIMINANDO BASURA
+find $base_dir \( -name \*~ -or -name \*.o -or -name \*\# -or -name core \) -exec rm -vf {} \;
+echo ' BORRANDOS ARCHIVOS BASURA '
+find ./ -iname \*.\* -not \( -iname \*.pdf -or -iname \*.sh -or -iname \.\* -or -iname \*.sample \) -exec rm -vf {} \;
+echo ' BORRANDO EXTENSION QUE NO SEA PDF'
+
+
 
 exit
