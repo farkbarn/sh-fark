@@ -1,0 +1,47 @@
+================================================
+		INSTRUCCIONES PARA GUARDADO DE PDF
+================================================
+
+1- crear los .PDF optimizados para ser ligeros con el perfil [1]
+2- guardar los pdf's en la carpeta del día correspondiente que aparecerá en este mismo directorio [2]
+3- FIN
+
+NOTA los nombres de los archivos deben atender a esta nomenclatura:
+
+        PAG-X##
+
+donde X es el cuerpo en mayúscula y ## el numero de página en 2 cifras
+
+Ejemplo: PAG-A01.pdf
+              PAG-B02.pdf
+              PAG-C03.pdf
+
+deber ser tal cual "PAG" en mayúscula "-" guion medio  X letra del cuerpo
+en mayúscula y ## número de pagina en 2 (dos) cifras.
+
+[1] el perfil de export lo pueden encontrar en este mismo directorio bajo el nombre de 'PARA-WEB'
+	con esto pueden automatizar la salide del indesign para que los archivos no sean tan pesados
+
+[2] el nombre del archivo debe estar escrito de la siguiente manera: 
+
+        PAG-X##
+
+donde X es el cuerpo en mayúscula y ## el numero de página en 2 (dos) cifras
+
+Ejemplo: PAG-A01.pdf
+         PAG-B02.pdf
+         PAG-C03.pdf
+
+deber ser tal cual "PAG" en MAYUSCULA, "-" guion medio, X letra del cuerpo
+en MAYUSCULA y ## número de pagina en 2 (dos) cifras.
+
+
+==========================	IMPORTANTE	==========================
+TODO ARCHIVO QUE NO ESTE ESCRITO CORRECTAMENTE COMO SE EJEMPLIFICA
+SERA BORRADO DE MANERA AUTOMATICA Y NO SERÁ CARGADO NI ALMACENADO
+
+
+PARA CUALQUIER DUDA LLAMAR A Ext: 134
+
+______________________________________
+Att: Licdo. Frank Barrera - WebMaster
