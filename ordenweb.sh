@@ -96,10 +96,10 @@ fi
 
 # BORRANDO ARCHIVOS QUE NO SON PDF
 # ELIMINANDO BASURA
-find $base_dir \( -name \*~ -or -name \*.o -or -name \*\# -or -name core \) -exec rm -vf {} \;
-echo ' BORRANDOS ARCHIVOS BASURA '
+find $base_dir -maxdepth 3 \( -name \*~ -or -name \*.o -or -name \*\# -or -name core \) -exec rm -vf {} \;
+echo ' BORRANDO ARCHIVOS BASURA '
 
-find $base_dir -iname \*.\* -not \( -iname \*.pdf -or -iname \*.sh -or -iname \.\* -or -iname \*.sample \) -exec rm -vf {} \;
+find $base_dir -maxdepth 3 -iname \*.\* -not \( -iname \*.pdf -or -iname \*.sh -or -iname \.\* -or -iname \*.sample \) -exec rm -vf {} \;
 echo ' BORRANDO EXTENSION QUE NO SEA PDF'
 
 find $base_dir -maxdepth 3 -iname \*.\* -not \( -iname \*.sh -or -iname \.\* -or -iname \*.sample \) -not -path "./PARA*/*" -exec rm vf {} \;
@@ -108,7 +108,11 @@ echo ' BORRANDO ARCHIVOS QUE ESTEN EN LA RAIZ DE LOS DIRECTORIOS '
 find $base_dir -maxdepth 3 -iname \*.\* -not \( -iname \*.sh -or -iname \.\* -or -iname \*.sample \) -not -path "./PARA*/*" -exec rm vf {} \;
 echo ' BORRANDO ARCHIVOS DEL DIRECTORIO DE TRABAJO ACTUAL'
 
-find $base_dir -path "./PARA*" -iname \*.\* -not \( -name "PAG-*.pdf" \)  -exec rm -vf {} \;
+find $base_dir -maxdepth 3 -path "./PARA*" -iname \*.\* -not \( -name "PAG-*.pdf" \)  -exec rm -vf {} \;
 echo ' BORRANDO ARCHIVOS BASURA DEL DIRECTORIO DE TRABAJO '
+
+
+
+
 
 exit
