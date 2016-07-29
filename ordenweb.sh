@@ -22,7 +22,7 @@ str_mesorg=' Esta organizado '
 tip_docval='*.pdf'	#Tipo de documento valido, se especifica que documento es aceptado para almacenar
 					#todo tocumento que no sea de esta extensión será borrado de forma automática
 tip_docdel='*.png, *.psd, *.jpg, *.jpeg, *.svg, *.doc*, *.indd, *.txt, *.exe'
-base_dir='./'		#se toma como base el directorio ./ para ejecutar el script a partir de este directorio
+base_dir='/home/farkbarn/Developers/sh-fark/'		#se toma como base el directorio ./ para ejecutar el script a partir de este directorio
 
 # YEAR
 year_x=$(date -d "tomorrow" +'%Y') #año en 4 digitos
@@ -96,10 +96,10 @@ fi
 
 # BORRANDO ARCHIVOS QUE NO SON PDF
 # ELIMINANDO BASURA
-find $base_dir -maxdepth 3 \( -name \*~ -or -name \*.o -or -name \*\# -or -name core \) -exec rm -vf {} \;
+find $base_dir -maxdepth 3 \( -name \*~ -or -name \*.o -or -name \*\# -or -name core \) -exec ls -l {} \;
 echo ' BORRANDO ARCHIVOS BASURA '
 
-find $base_dir -maxdepth 3 -iname \*.\* -not \( -iname \*.pdf -or -iname \*.sh -or -iname \.\* -or -iname \*.sample \) -exec rm -vf {} \;
+find $base_dir -maxdepth 3 -iname \*.\* -not \( -iname \*.pdf -or -iname \*.sh -or -iname \.\* -or -iname \*.sample \) -exec ls -l {} \;
 echo ' BORRANDO EXTENSION QUE NO SEA PDF'
 
 find $base_dir -maxdepth 3 -iname \*.\* -not \( -iname \*.sh -or -iname \.\* -or -iname \*.sample \) -not -path "./PARA*/*" -exec rm vf {} \;
@@ -108,7 +108,7 @@ echo ' BORRANDO ARCHIVOS QUE ESTEN EN LA RAIZ DE LOS DIRECTORIOS '
 find $base_dir -maxdepth 3 -iname \*.\* -not \( -iname \*.sh -or -iname \.\* -or -iname \*.sample \) -not -path "./PARA*/*" -exec rm vf {} \;
 echo ' BORRANDO ARCHIVOS DEL DIRECTORIO DE TRABAJO ACTUAL'
 
-find $base_dir -maxdepth 3 -path "./PARA*" -iname \*.\* -not \( -name "PAG-*.pdf" \)  -exec rm -vf {} \;
+find $base_dir -maxdepth 3 -path "./PARA*" -iname \*.\* -not \( -name "PAG-*.pdf" \)  -exec ls -l {} \;
 echo ' BORRANDO ARCHIVOS BASURA DEL DIRECTORIO DE TRABAJO '
 
 
