@@ -47,6 +47,11 @@ dir_ord=false;	# FALTA ORDENAR
 
 ## LOGICA
 ## CREANDO DIRECTORIO DE TRABAJO
+
+#CREACIÓN DE LOG
+touch ordenweb.log;
+echo '====================================' >> ordenweb.log;
+
 # CREANDO AÑO
 if [[ -d "$base_dir""$year_x" ]]; then
 	echo $str_direxi \'$year_x\'
@@ -99,13 +104,13 @@ fi
 find $base_dir -maxdepth 3 \( -name \*~ -or -name \*.o -or -name \*\# -or -name core \) -exec ls -l {} \;
 echo ' BORRANDO ARCHIVOS BASURA '
 
-find $base_dir -maxdepth 3 -iname \*.\* -not \( -iname \*.pdf -or -iname \*.sh -or -iname \.\* -or -iname \*.sample \) -exec ls -l {} \;
+find $base_dir -maxdepth 3 -iname \*.\* -not \( -iname \*.pdf -or -iname \*.sh -or -iname \.\* -or -iname \*.log \) -exec ls -l {} \;
 echo ' BORRANDO EXTENSION QUE NO SEA PDF'
 
-find $base_dir -maxdepth 3 -iname \*.\* -not \( -iname \*.sh -or -iname \.\* -or -iname \*.sample \) -not -path "./PARA*/*" -exec rm vf {} \;
+find $base_dir -maxdepth 3 -iname \*.\* -not \( -iname \*.sh -or -iname \.\* -or -iname \*.log \) -not -path "./PARA*/*" -exec rm -vf {} \;
 echo ' BORRANDO ARCHIVOS QUE ESTEN EN LA RAIZ DE LOS DIRECTORIOS '
 
-find $base_dir -maxdepth 3 -iname \*.\* -not \( -iname \*.sh -or -iname \.\* -or -iname \*.sample \) -not -path "./PARA*/*" -exec rm vf {} \;
+find $base_dir -maxdepth 3 -iname \*.\* -not \( -iname \*.sh -or -iname \.\* -or -iname \*.log \) -not -path "./PARA*/*" -exec rm -vf {} \;
 echo ' BORRANDO ARCHIVOS DEL DIRECTORIO DE TRABAJO ACTUAL'
 
 find $base_dir -maxdepth 3 -path "./PARA*" -iname \*.\* -not \( -name "PAG-*.pdf" \)  -exec ls -l {} \;
