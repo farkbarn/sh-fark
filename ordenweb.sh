@@ -81,23 +81,6 @@ else
 	mkdir "$base_dir""PARA ${dia^^} $fecha"
 	echo  $str_dircre \'"PARA ${dia^^} $fecha"\'
 fi
-# MOVIENDO DIRECTORIO DIA DE TRABAJO
-if [[ -d "$base_dir""PARA ${dia_t^^} $fecha_t" ]]; then #si el dir esta en la raiz
-	if [[ -d "$base_dir""$year_x"/"${month_x^^}"/"PARA ${dia_t^^} $fecha_t" ]]; then #si el dir esta en su lugar
-		echo $str_dir "$base_dir""PARA ${dia_t^^} $fecha_t" $str_dup #existe una duplicidad de dir
-	else
-		mv "$base_dir""PARA ${dia_t^^} $fecha_t" "$base_dir""$year_x"/"${month_x^^}"/ #si no existe se mueve para ordenar
-		echo $str_mesorg \'"$year_x"\/"${month_x^^}"\/"PARA ${dia_t^^} $fecha_t"\'
-	fi
-	dir_ord=true;
-	echo $str_dir \'"PARA ${dia_t^^} $fecha_t"\' $str_mesorg 'en ' "$base_dir""$year_x"/"${month_x^^}"/
-else
-	if [[ -d "$base_dir""$year_x"/"${month_x^^}"/"PARA ${dia_t^^} $fecha_t" ]]; then #Si no esta en la raiz se revisa si existe en el orden
-		echo $str_dir \'"PARA ${dia_t^^} $fecha_t"\' $str_mesorg 'en ' "$base_dir""$year_x"/"${month_x^^}"/ #Si esta pues ya esta ordenado no hay problema
-	else
-		echo $str_dir "$base_dir""PARA ${dia_t^^} $fecha_t" $str_msg_borcre # se debe auditar para ver quien borró el directorio o que sucedió
-	fi
-fi
 
 # BORRANDO ARCHIVOS QUE NO SON PDF
 # ELIMINANDO BASURA
@@ -116,6 +99,23 @@ echo ' BORRANDO ARCHIVOS DEL DIRECTORIO DE TRABAJO ACTUAL'
 find $base_dir -maxdepth 3 -path "./PARA*" -iname \*.\* -not \( -name "PAG-*.pdf" \)  -exec ls -l {} \;
 echo ' BORRANDO ARCHIVOS BASURA DEL DIRECTORIO DE TRABAJO '
 
+# MOVIENDO DIRECTORIO DIA DE TRABAJO
+if [[ -d "$base_dir""PARA ${dia_t^^} $fecha_t" ]]; then #si el dir esta en la raiz
+	if [[ -d "$base_dir""$year_x"/"${month_x^^}"/"PARA ${dia_t^^} $fecha_t" ]]; then #si el dir esta en su lugar
+		echo $str_dir "$base_dir""PARA ${dia_t^^} $fecha_t" $str_dup #existe una duplicidad de dir
+	else
+		mv "$base_dir""PARA ${dia_t^^} $fecha_t" "$base_dir""$year_x"/"${month_x^^}"/ #si no existe se mueve para ordenar
+		echo $str_mesorg \'"$year_x"\/"${month_x^^}"\/"PARA ${dia_t^^} $fecha_t"\'
+	fi
+	dir_ord=true;
+	echo $str_dir \'"PARA ${dia_t^^} $fecha_t"\' $str_mesorg 'en ' "$base_dir""$year_x"/"${month_x^^}"/
+else
+	if [[ -d "$base_dir""$year_x"/"${month_x^^}"/"PARA ${dia_t^^} $fecha_t" ]]; then #Si no esta en la raiz se revisa si existe en el orden
+		echo $str_dir \'"PARA ${dia_t^^} $fecha_t"\' $str_mesorg 'en ' "$base_dir""$year_x"/"${month_x^^}"/ #Si esta pues ya esta ordenado no hay problema
+	else
+		echo $str_dir "$base_dir""PARA ${dia_t^^} $fecha_t" $str_msg_borcre # se debe auditar para ver quien borró el directorio o que sucedió
+	fi
+fi
 
 
 
