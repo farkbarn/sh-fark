@@ -1,6 +1,6 @@
 #!/bin/bash
 # -*- ENCODING: UTF-8 -*-
-#Version: 0.0.1
+#Version: 0.0.2
 #Author: Frank Barrera
 #Tw: farkbarn
 #email: frankbarrerag@gmail.com
